@@ -39,7 +39,7 @@
     "lib"
   ],
   "dependencies": {
-    "rn-fetch-blob": "^0.12.0",
+    "react-native-blob-util": "^0.13.17",
     "sha1": "^1.1.1"
   },
   "publishConfig": {

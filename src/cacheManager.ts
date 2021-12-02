@@ -1,7 +1,7 @@
-import RNFetchBlob, {StatefulPromise, FetchBlobResponse} from 'rn-fetch-blob';
+import ReactNativeBlobUtil, {StatefulPromise, FetchBlobResponse} from 'react-native-blob-util';
 import sha1 from 'sha1';
 
-const BASE_PATH = RNFetchBlob.fs.dirs.DocumentDir;
+const BASE_PATH = ReactNativeBlobUtil.fs.dirs.DocumentDir;
 
 interface ItemQueue {
   hash: string;
@@ -33,7 +33,7 @@ export default class CacheManager {
   }
 
   clearCache(): Promise<void> {
-    return RNFetchBlob.fs.unlink(this.cacheDir);
+    return ReactNativeBlobUtil.fs.unlink(this.cacheDir);
   }
 
   private async getCacheOrDownload(uri: string, hash: string): Promise<void> {
@@ -50,7 +50,7 @@ export default class CacheManager {
       return;
     }
 
-    const downloadHandle = RNFetchBlob.config({
+    const downloadHandle = ReactNativeBlobUtil.config({
       fileCache: true,
       path: imagePath,
     }).fetch('GET', uri);
@@ -77,6 +77,6 @@ export default class CacheManager {
   }
 
   private async existsFileCache(imagePath: string): Promise<boolean> {
-    return await RNFetchBlob.fs.exists(imagePath);
+    return await ReactNativeBlobUtil.fs.exists(imagePath);
   }
 }
